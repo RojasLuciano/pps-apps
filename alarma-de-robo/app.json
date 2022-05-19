@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "alarma-robo",
+    "slug": "myaalarma-robopp2",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/adaptive-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#f3f3f3"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#f3f3f3"
+      },
+      "package": "com.lucianorojas.alarmaDeRobo"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
