@@ -8,7 +8,7 @@ import CameraScreen from './src/screens/CameraScreen';
 import LikeScreen from './src/screens/LikeScreen';
 import DislikeScreen from './src/screens/DislikeScreen'
 import AnimatedLottieView from 'lottie-react-native';
-import { StyleSheet } from 'react-native';
+import { ImageBackgroundBase, StyleSheet } from 'react-native';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 console.disableYellowBox = true;
 
@@ -40,14 +40,16 @@ export default function App() {
         autoPlay
         style={styles.splash}
         source={require('./assets/animation.json')}
-      />)
+      />
+  
+    )
   }
 
   const MyTheme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: 'rgba(243,243,243,255)'
+      background: '#fe876f'
     },
   };
 
@@ -69,12 +71,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f3f3f3',
+    backgroundColor: '#fe876f',
     alignItems: 'center',
     justifyContent: 'center',
   },
   splash: {
-    backgroundColor: '#f3f3f3',
+    backgroundColor: '#fe876f',
   },
 });
 

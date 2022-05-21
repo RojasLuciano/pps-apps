@@ -35,7 +35,7 @@ export default function App() {
     return (
       <AnimatedLottieView duration={3000}
         style={{
-          backgroundColor: '#f3f3f3',
+          backgroundColor: '#b8e5a8',
         }}
         autoPlay
         source={require('./assets/animation.json')}
@@ -46,7 +46,7 @@ export default function App() {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: 'rgba(243,243,243,255)'
+      background: '#b8e5a8'
     },
   };
 
@@ -65,7 +65,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f3f3f3',
+    backgroundColor: '#b8e5a8',
     alignItems: 'center',
     justifyContent: 'center',
   },

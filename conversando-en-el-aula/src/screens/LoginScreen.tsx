@@ -1,46 +1,44 @@
 
-
-import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React from 'react';
 import {
-    View,
-    Text,
     StyleSheet,
-    KeyboardAvoidingView,
+    Text,
+    View,
     TextInput,
+    Keyboard,
+    TouchableWithoutFeedback,
     TouchableOpacity,
     Image,
-    Keyboard,
-    Platform,
-    TouchableWithoutFeedback,
-    ImageBackground,
     Dimensions,
-} from "react-native";
-import { auth } from "../database/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { RootStackParamList } from "../../App";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import Spinner from "react-native-loading-spinner-overlay/lib";
-import { useFonts, Bangers_400Regular } from '@expo-google-fonts/bangers';
-import AppLoading from "expo-app-loading";
-import styles from "../styles/Style";
-import Modal from "react-native-modal";
+    Modal,
+} from 'react-native';
 
-const LoginScreen = () => {
+// expo install expo-linear-gradient
+import { LinearGradient } from 'expo-linear-gradient';
+
+// npm i react-native-elements
+import { Icon } from 'react-native-elements';
+
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { RootStackParamList } from '../../App';
+import { auth } from '../database/firebase';
+import Spinner from 'react-native-loading-spinner-overlay/lib';
+
+export default function LoginScreen5() {
+
+
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [message, setMessage] = React.useState("");
     const [loading, setLoading] = React.useState(false);
     const [isModalVisible, setModalVisible] = React.useState(false);
-    const win = Dimensions.get('window');
-    const [chosenOption, setChosenOption] = React.useState('');
-
 
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
-
 
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -50,31 +48,6 @@ const LoginScreen = () => {
             setLoading(false);
         }, 3000);
     };
-
-    const options = [
-        { label: 'Admin', value: 'admin@gmail.com', pass: 'admin123e' },
-        { label: 'Service', value: 'service@gmail.com', pass: 'service' },
-        { label: 'User', value: 'user@gmail.com', pass: 'user123' },
-    ];
-
-
-    /**
-     * Returns true if the screen is in portrait mode
-     */
-    const isPortrait = () => {
-        const dim = Dimensions.get('screen');
-        return dim.height >= dim.width;
-    };
-
-
-    let [fontsLoaded] = useFonts({
-        Bangers_400Regular
-    });
-
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    }
-
 
     const handlerLogin = async () => {
         setLoading(true);
@@ -153,342 +126,277 @@ const LoginScreen = () => {
 
 
     return (
-            <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <LinearGradient style={styles.container} colors={['#333', '#303030']}>
 
-                    <Text style={{
-                        color: "black",
-                        fontSize: 90,
-                        fontFamily: "Bangers_400Regular",
-                        textAlign: "center",
-                        marginTop: win.height * 0.1,
-                    }}>
-                        Bienvenido{"\n"}
-                        <Text style={{
-                            color: "black",
-                            fontSize: 30,
-                            fontFamily: "Bangers_400Regular",
-                        }}>
-                            Por favor complete los datos para continuar
-                        </Text>
-                    </Text>
+                <Image source={require('../../assets/icon2.png')} style={{
+                    width: 100,
+                    height: 100,
+                    alignSelf: 'center',
+                }} />
 
+                {/* USUARIO */}
+                <View style={styles.inputTopMorph}>
+                    <View style={styles.inputBottomMorph}>
+                        <TextInput
+                            style={styles.input}
+                            placeholderTextColor={'#8c8c8c'}
+                            placeholder={'Correo electrónico'}
+                            value={email}
+                            onChangeText={(text) => setEmail(text)}
+                            clearButtonMode="always"
+                        />
+                    </View>
 
-                    <TextInput
-                        style={{
-                            marginTop: win.height / 10,
-                            color: "#000000",
-                            backgroundColor: "#dbece7",
-                            paddingVertical: 10,
-                            paddingHorizontal: 20,
-                            borderRadius: 20,
-                            alignItems: "center",
-                            height: 40,
-                            marginBottom: 5,
-
-                            borderColor: 'white',
-                            borderWidth: 1,
-                        }}
-                        placeholder="Correo electrónico"
-                        placeholderTextColor="#000000"
-                        onChangeText={(email) => setEmail(email)}
-                        value={email}
-
-                    />
-
-                    <TextInput
-                        style={{
-                            position: "relative",
-                            color: "#000000",
-                            backgroundColor: "#dbece7",
-                            paddingVertical: 10,
-                            paddingHorizontal: 20,
-                            borderRadius: 20,
-                            alignItems: "center",
-                            height: 40,
-                            marginBottom: 3,
-
-                            borderColor: 'white',
-                            borderWidth: 1,
-                        }}
-                        placeholder="Contraseña"
-                        placeholderTextColor="#000000"
-                        onChangeText={(password) => setPassword(password)}
-                        value={password}
-                        secureTextEntry={true}
-                    />
-
-
-
-                    {loading && (
-                        <View style={styles.spinContainer}>
-                            <Spinner
-                                visible={loading}
-                                textStyle={styles.spinnerTextStyle}
-                            />
-                        </View>
-                    )}
+                    {/* CONTRASEÑA */}
+                    <View style={styles.inputBottomMorph}>
+                        <TextInput
+                            style={styles.input}
+                            value={password}
+                            onChangeText={(text) => setPassword(text)}
+                            placeholderTextColor={'#8c8c8c'}
+                            placeholder={'Contraseña'}
+                            secureTextEntry={true}
+                        />
+                    </View>
 
                     <View>
-                        {!!isModalVisible ? (
-                            <Modal isVisible={isModalVisible}>
-                                <View style={{
-                                    backgroundColor: "#b50404",
-                                    flex: 1,
-
-                                    width: "60%",
-                                    height: "10%",
-                                    position: "absolute",
-                                    borderRadius: 10,
-                                    margin: "auto",
-
-                                    alignSelf: "center",
-                                }}>
-                                    <Text style={{
+                        {loading && (
+                            <View style={{
+                                position: "absolute",
+                                display: "flex",
+                                backgroundColor: "rgba(255, 0, 0, 0)",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                top: 0,
+                                height: "100%",
+                                width: "100%",
+                                zIndex: 100,
+                            }}>
+                                <Spinner
+                                    visible={loading}
+                                    textStyle={{
                                         color: "white",
-                                        fontWeight: "500",
-                                        fontSize: 15,
-                                        textAlign: "center",
-                                        marginTop: 25,
-                                        marginBottom: 10,
-                                        alignSelf: "center",
-                                    }}>{message}</Text>
-                                </View>
-                            </Modal>
-                        ) : null}
-                    </View>
+                                    }}
+                                />
+                            </View>
+                        )}
 
-                    <Text style={{
-                        color: "black",
-                        fontSize: 18,
-                        textAlign: "center",
-                        width: 90,
+                        <View>
+                            {!!isModalVisible ? (
+                                <Modal visible={isModalVisible}>
+                                    <View style={{
+                                        backgroundColor: "#b50404",
+                                        width: "60%",
+                                        height: 80,
+                                        borderRadius: 10,
+                                        marginTop: 250,
+
+                                    }}>
+                                        <Text style={{
+                                            color: "white",
+                                            fontWeight: "500",
+                                            fontSize: 15,
+                                            textAlign: "center",
+                                            marginTop: 25,
+                                            marginBottom: 10,
+                                            alignSelf: "center",
+                                        }}>{message}</Text>
+                                    </View>
+                                </Modal>
+                            ) : null}
+                        </View>
+                    </View>
+                </View>
+
+        
+                <TouchableOpacity
+                    onPress={functionCombined}
+                    style={styles.buttonOpacity}>
+                    <View style={styles.buttonView}>
+                        <Text style={styles.buttonText}>Ingresar</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <View
+                    style={{
+                        flexDirection: 'row',
                         alignSelf: 'center',
-                        paddingVertical: 4,
-                        paddingHorizontal: -44,
-                        textDecorationLine: 'underline'
-                    }} onPress={functionCombined}>
-                        Ingresar
+                        marginTop: 20,
+                    }}
+                >
+                    <Text style={{ color: "#fafafa", }}>
+                        No tiene una cuenta?{" "}
                     </Text>
-
-                    <View
-                        style={{
-
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            borderRadius: 20,
-                        }}
+                    <TouchableOpacity
+                        onPress={() => console.log('Pressed Registrese')}
                     >
-                        <Text style={{ color: "black", }}>
-                            No tiene una cuenta?{" "}
+                        <Text
+                            style={{
+
+                                color: "#fafafa",
+                                justifyContent: "flex-end",
+                                textDecorationLine: 'underline'
+                            }}
+                        >
+                            {""}
+                            Regístrese
                         </Text>
-                        <TouchableOpacity onPress={handlerSignUp}>
-                            <Text
-                                style={{
+                    </TouchableOpacity>
 
-                                    color: "black",
-                                    justifyContent: "flex-end",
-                                    textDecorationLine: 'underline'
-                                }}
-                            >
-                                {""}
-                                Regístrese
+                </View>
+                {/* Social Login */}
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        marginTop: 40,
+                    }}
+                >
+                    <TouchableOpacity
+                        onPress={onPressAdminHandler}
+                        style={styles.iconTouchable}>
+                        <View style={styles.iconView}>
+                            <Icon
+                                name='user'
+                                type='font-awesome'
+                                color='#fafafa'
+                            />
+                            <Text style={{ color: 'white' }}>
+                                Admin
                             </Text>
-                        </TouchableOpacity>
-                    </View>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={onPressUserHandler}
+                        style={styles.iconTouchable}>
+                        <View style={styles.iconView}>
+                            <Icon
+                                name='user'
+                                type='font-awesome'
+                                color='#fafafa'
+                            />
+                            <Text style={{ color: 'white' }}>
+                                Usuario
+                            </Text>
 
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={onPressServiceHandler}
 
-                    <View style={{
-
-                        flexDirection: "row",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginTop: win.height / 30,
-
-                    }} >
-
-                        <TouchableOpacity
-                            onPress={onPressUserHandler}
-                            style={[styles.buttonRole, styles.buttonOutlineRole,
-                            {
-                                width: win.width * 0.2,
-                            }
-                            ]}
-                        >
-                            <Text style={styles.buttonOutlineTextRole}>Usuario</Text>
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity
-                            onPress={onPressAdminHandler}
-                            style={[styles.buttonRole, styles.buttonOutlineRole,
-                            {
-                                width: win.width * 0.2,
-                            }
-                            ]}
-                        >
-                            <Text style={styles.buttonOutlineTextRole}>Admin</Text>
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity
-                            onPress={onPressServiceHandler}
-                            style={[styles.buttonRole, styles.buttonOutlineRole,
-                            {
-                                width: win.width * 0.2,
-                            }
-                            ]}
-                        >
-                            <Text style={styles.buttonOutlineTextRole}>Servicio</Text>
-                        </TouchableOpacity>
-
-                    </View>
-
-              </View>
-   
-  
-
-
+                        style={styles.iconTouchable}>
+                        <View style={styles.iconView}>
+                            <Icon
+                                name='user'
+                                type='font-awesome'
+                                color='#fafafa'
+                            />
+                            <Text style={{ color: 'white' }}>
+                                Service
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </LinearGradient>
+        </TouchableWithoutFeedback>
     );
-};
-export default LoginScreen;
+}
 
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//     },
-//     image: {
-
-//         width: 70,
-//         height: 70,
-
-//     },
-//     message: {
-//         width: 60,
-//         height: 60,
-//         alignSelf: "center",
-//     },
-//     imageText: {
-//         fontSize: 20,
-//         fontWeight: "bold",
-//         color: "#8871ff",
-//         textAlign: "center",
-//         marginTop: 10,
-//         marginBottom: 10,
-//         fontFamily: 'Bangers_400Regular',
-//     },
-//     fabLocation: {
-//         flex: 1,
-//         position: "absolute",
-//         bottom: -11,
-//     },
-//     fabLocationBR: {
-//         right: 20,
-//     },
-//     fabLocationTL: {
-//         left: 20,
-//         borderRadius: 50,
-
-//         backgroundColor: "#ffffff",
-//         alignContent: "center",
-//         alignItems: "center",
-//         justifyContent: "center",
-//     },
-//     fabLocationCenter: {
-//         alignSelf: "center",
-//     },
-//     inner: {
-//         padding: 24,
-
-//         justifyContent: "center",
-
-//     },
-//     header: {
-//         borderRadius: 20,
-//         color: "#000000",
-//         fontFamily: 'Bangers_400Regular',
-//         fontSize: 50,
-//         textAlign: "center",
-//     },
-//     subtitle: {
-//         color: "#8871ff",
-//         fontSize: 15,
-//         fontWeight: "100",
-//         textAlign: "center",
-//         borderRadius: 20,
-//     },
-//     input: {
-
-
-
-
-
-
-//     },
-//     btnContainer: {
-//     },
-//     logo: {
-//         flex: 1,
-//         width: undefined,
-//         height: undefined,
-//         resizeMode: "contain",
-//     },
-//     ingresarText: {
-
-
-//     },
-//     spinnerTextStyle: {
-//         color: "white",
-//     },
-//     spinContainer: {
-//         position: "absolute",
-//         display: "flex",
-//         backgroundColor: "rgba(255, 0, 0, 0)",
-//         alignItems: "center",
-//         justifyContent: "center",
-//         top: 0,
-//         height: "100%",
-//         width: "100%",
-//         zIndex: 100,
-//     },
-//     inputContainer: {
-//         width: "80%",
-//         marginTop: -70,
-//         marginBottom: 10,
-//         alignSelf: "center",
-//     },
-//     buttonError: {
-//         backgroundColor: "#b50404",
-//         width: "100%",
-//         padding: 15,
-//         borderRadius: 18,
-//         alignItems: "center",
-//     },
-//     buttonText: {
-//         color: "#000000",
-//         fontWeight: "700",
-//         fontSize: 16,
-//     },
-//     modalContainer: {
-//         backgroundColor: "#b50404",
-//         flex: 1,
-
-//         width: "60%",
-//         height: "10%",
-//         position: "absolute",
-//         borderRadius: 10,
-
-//         margin: "auto",
-//         textAlign: "center",
-//         alignSelf: "center",
-//     },
-//     modalText: {
-//         color: "white",
-//         fontWeight: "500",
-//         fontSize: 15,
-//         textAlign: "center",
-//         marginTop: 25,
-//         marginBottom: 10,
-//         alignSelf: "center",
-//     },
-// });
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: 60,
+        paddingHorizontal: 20,
+    },
+    inputTopMorph: {
+        width: '100%',
+        height: 100,
+        marginTop: 20,
+        borderRadius: 10,
+        backgroundColor: '#333',
+        elevation: 5,
+        shadowOffset: {
+            width: -12,
+            height: -12,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 6,
+        shadowColor: '#252525',
+    },
+    inputBottomMorph: {
+        backgroundColor: '#333',
+        borderRadius: 10,
+        shadowOffset: {
+            width: 6,
+            height: 6,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 6,
+        shadowColor: '#414141',
+    },
+    input: {
+        width: '100%',
+        height: 50,
+        fontSize: 18,
+        paddingHorizontal: 10,
+        color: '#f1f3f6',
+    },
+    buttonOpacity: {
+        width: '100%',
+        height: 50,
+        marginTop: 22,
+        borderRadius: 10,
+        backgroundColor: '#2e2e2e',
+        elevation: 5,
+        shadowOffset: {
+            width: -6,
+            height: -6,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 6,
+        shadowColor: '#1d1d1d',
+    },
+    buttonView: {
+        backgroundColor: '#2e2e2e',
+        borderRadius: 10,
+        shadowOffset: {
+            width: 6,
+            height: 6,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 6,
+        shadowColor: '#3f3f3f',
+    },
+    buttonText: {
+        fontSize: 20,
+        color: '#fafafa',
+        marginVertical: 10,
+        textAlign: 'center',
+    },
+    iconTouchable: {
+        borderRadius: 10,
+        backgroundColor: '#2e2e2e',
+        elevation: 5,
+        shadowOffset: {
+            width: -6,
+            height: -6,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 6,
+        shadowColor: '#1d1d1d',
+        marginHorizontal: 10,
+    },
+    iconView: {
+        backgroundColor: '#2e2e2e',
+        borderRadius: 10,
+        shadowOffset: {
+            width: 6,
+            height: 6,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 6,
+        shadowColor: '#3f3f3f',
+        padding: 14,
+    },
+});

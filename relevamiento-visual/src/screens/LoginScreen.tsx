@@ -70,36 +70,6 @@ const LoginScreen = () => {
     }
 
 
-    // const handlerLogin = async () => {
-    //     setLoading(true);
-    //     await signInWithEmailAndPassword(auth, email, password)
-    //         .then((userCredential: { user: any }) => {
-    //             const user = userCredential.user;
-    //             console.log("Logged in with", user.email);
-    //         })
-    //         .then(() => {
-    //             navigation.replace("Home");
-    //         })
-    //         .catch((error) => {
-    //             switch (error.code) {
-    //                 case "auth/invalid-email":
-    //                 case "auth/user-not-found":
-    //                 case "auth/wrong-password":
-    //                 case "auth/internal-error":
-    //                 case "auth/too-many-requests":
-    //                     toggleModal();
-    //                     setMessage("Credenciales inválidas");
-    //                     break;
-    //                 default:
-    //                     setMessage(error.message);
-    //                     break;
-    //             }
-    //         })
-    //         .finally(() => {
-    //             setLoading(false);
-    //         });
-    // };
-
     const handlerLogin = async () => {
         setLoading(true);
         await signInWithEmailAndPassword(auth, email, password)
@@ -178,7 +148,6 @@ const LoginScreen = () => {
                 flex: 1,
             }}>
                 <Text style={{
-
                     color: "black",
                     fontSize: 90,
                     fontFamily: "Bangers_400Regular",
@@ -192,7 +161,6 @@ const LoginScreen = () => {
                         fontFamily: "Bangers_400Regular",
                     }}>
                         Por favor complete los datos para continuar {""}
-
                     </Text>
                 </Text>
 
@@ -215,7 +183,6 @@ const LoginScreen = () => {
                     placeholderTextColor="#000000"
                     onChangeText={(email) => setEmail(email)}
                     value={email}
-
                 />
 
                 <TextInput
@@ -229,7 +196,6 @@ const LoginScreen = () => {
                         alignItems: "center",
                         height: 40,
                         marginBottom: 3,
-
                         borderColor: 'white',
                         borderWidth: 1,
                     }}
@@ -239,9 +205,6 @@ const LoginScreen = () => {
                     value={password}
                     secureTextEntry={true}
                 />
-
-
-
                 {loading && (
                     <View style={styles.spinContainer}>
                         <Spinner
@@ -260,7 +223,6 @@ const LoginScreen = () => {
                         </Modal>
                     ) : null}
                 </View>
-
                 <Text style={{
                     color: "black",
                     fontSize: 18,
@@ -276,7 +238,6 @@ const LoginScreen = () => {
 
                 <View
                     style={{
-
                         flexDirection: "row",
                         justifyContent: "center",
                         alignItems: "center",
@@ -291,7 +252,6 @@ const LoginScreen = () => {
                     <TouchableOpacity onPress={handlerSignUp}>
                         <Text
                             style={{
-
                                 color: "black",
                                 justifyContent: "flex-end",
                                 textDecorationLine: 'underline'
@@ -308,10 +268,8 @@ const LoginScreen = () => {
                         flexDirection: "row",
                         justifyContent: "space-between",
                         marginTop: win.height / 45,
-
                     }}
                 >
-
                     <TouchableOpacity
                         onPress={onPressAdminHandler}
                         style={{
@@ -325,7 +283,6 @@ const LoginScreen = () => {
                                 resizeMode: "contain",
                                 width: win.width / 5,
                                 height: win.width / 5,
-
                             }}
                             source={require("../assets/admin.png")}
                         />
@@ -345,7 +302,6 @@ const LoginScreen = () => {
                         style={{
                             width: win.width / 5,
                             height: win.height / 10,
-
                         }}
                     >
                         <Image
@@ -353,7 +309,6 @@ const LoginScreen = () => {
                                 resizeMode: "contain",
                                 width: win.width / 5,
                                 height: win.width / 5,
-
                             }}
                             source={require("../assets/user.png")}
                         />
@@ -546,3 +501,4 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
 });
+

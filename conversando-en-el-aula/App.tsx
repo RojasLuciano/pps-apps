@@ -43,7 +43,7 @@ export default function App() {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: 'rgba(243,243,243,255)'
+      background: '#303030'
     },
   };
 
@@ -63,12 +63,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f3f3f3',
+    backgroundColor: '#303030',
     alignItems: 'center',
     justifyContent: 'center',
   },
   splash: {
-    backgroundColor: '#f3f3f3',
+    backgroundColor: '#303030',
 
   },
 });

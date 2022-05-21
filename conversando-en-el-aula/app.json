@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/adaptive-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#f3f3f3"
+      "backgroundColor": "#303030"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,8 +21,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#f3f3f3"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#303030"
       },
       "package": "com.luciano.conversando.en.el.aula"
     }

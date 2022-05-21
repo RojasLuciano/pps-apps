@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/adaptive-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#f3f3f3"
+      "backgroundColor": "#fe876f"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,8 +22,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#f3f3f3"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#fe876f"
       },
       "package": "com.lucho.Camara"
     },

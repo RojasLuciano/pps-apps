@@ -30,6 +30,13 @@ const LoadList = () => {
     }
   }
 
+  async function handlerSingOut() {
+    await auth
+      .signOut()
+      .then(() => { navigation.replace('Login') })
+      .catch((error: any) => alert(error.message))
+  }
+
   useFocusEffect(
       useCallback(() => {
           getDocuments();
@@ -52,7 +59,8 @@ const LoadList = () => {
             querySnapshot.forEach(async (doc) => {
                 const res:any = {...doc.data(), id:doc.id};
                 const imageUrl = await getDownloadURL(ref(storage, res.image));
-                setData((arr: any) => [...arr, {...res, imageUrl: imageUrl}]);
+                //setData((arr: any) => [...arr, {...res, imageUrl: imageUrl}]);
+                setData((arr: any) => [...arr, { ...res, imageUrl: imageUrl }].sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0)))
             });
         } catch (error) {
             console.log(error)                    
@@ -61,12 +69,14 @@ const LoadList = () => {
         }
   };
 
-  
+  function handlerBack() {
+    navigation.replace('Home');
+  }
   
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
-        <TouchableOpacity style={styles.exitButton} onPress={handleReturn}>
+        <TouchableOpacity style={styles.exitButton} onPress={handlerSingOut}>
             <Image
               source={require("../assets/return.png")}
               style={styles.buttonImageExit}

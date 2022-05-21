@@ -4,10 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-
+import * as app from '../screens/LoginScreen';
 
 
 const HomeScreen = () => {
+  let admin = app.admin;
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [flagUser, setFlagUser] = React.useState(false);

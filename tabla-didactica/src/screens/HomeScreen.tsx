@@ -1172,6 +1172,7 @@ const HomeScreen = () => {
                                             verticalOrientation="up"
                                             position="left"
                                             spacing={67}
+                                            size={win.width / 6}
                                             hideShadow={true}
                                             buttonColor="rgba(0, 0, 0, 0.0)"
                                             useNativeFeedback={false}
@@ -1185,7 +1186,7 @@ const HomeScreen = () => {
 
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura + 15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -1209,7 +1210,7 @@ const HomeScreen = () => {
                                                     onPress={() => setItemsAtr(2)}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura + 15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -1233,7 +1234,7 @@ const HomeScreen = () => {
                                                 onPress={() => setItemsAtr(3)}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura + 15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -1271,6 +1272,7 @@ const HomeScreen = () => {
                                             verticalOrientation="up"
                                             position="right"
                                             spacing={67}
+                                            size={win.width / 6}
                                             hideShadow={true}
                                             buttonColor="rgba(0, 0, 0, 0.0)"
                                             useNativeFeedback={false}
@@ -1282,7 +1284,7 @@ const HomeScreen = () => {
                                                     onPress={() => setTopic("colores")}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura +15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
 
@@ -1306,7 +1308,7 @@ const HomeScreen = () => {
                                                     onPress={() => setTopic("numeros")}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura +15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -1329,7 +1331,7 @@ const HomeScreen = () => {
                                                     onPress={() => setTopic("animales")}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura,
+                                                        height: altura +55,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -1675,7 +1677,6 @@ const HomeScreen = () => {
                                             >
                                             </Text>
                                         </TouchableOpacity>
-
                                         <ActionButton  //languages
                                             style={{
                                                 marginBottom: win.width * 0.13,
@@ -1696,6 +1697,7 @@ const HomeScreen = () => {
                                             verticalOrientation="up"
                                             position="left"
                                             spacing={67}
+                                            size={win.width / 6}
                                             hideShadow={true}
                                             buttonColor="rgba(0, 0, 0, 0.0)"
                                             useNativeFeedback={false}
@@ -1709,7 +1711,7 @@ const HomeScreen = () => {
 
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura + 15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -1733,7 +1735,7 @@ const HomeScreen = () => {
                                                     onPress={() => setItemsAtr(2)}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura + 15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -1757,7 +1759,7 @@ const HomeScreen = () => {
                                                 onPress={() => setItemsAtr(3)}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura + 15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -1795,6 +1797,7 @@ const HomeScreen = () => {
                                             verticalOrientation="up"
                                             position="right"
                                             spacing={67}
+                                            size={win.width / 6}
                                             hideShadow={true}
                                             buttonColor="rgba(0, 0, 0, 0.0)"
                                             useNativeFeedback={false}
@@ -1806,7 +1809,7 @@ const HomeScreen = () => {
                                                     onPress={() => setTopic("colores")}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura +15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
 
@@ -1830,7 +1833,7 @@ const HomeScreen = () => {
                                                     onPress={() => setTopic("numeros")}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura +15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -1853,7 +1856,7 @@ const HomeScreen = () => {
                                                     onPress={() => setTopic("animales")}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura,
+                                                        height: altura +55,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -2217,6 +2220,7 @@ const HomeScreen = () => {
                                             verticalOrientation="up"
                                             position="left"
                                             spacing={67}
+                                            size={win.width / 6}
                                             hideShadow={true}
                                             buttonColor="rgba(0, 0, 0, 0.0)"
                                             useNativeFeedback={false}
@@ -2230,7 +2234,7 @@ const HomeScreen = () => {
 
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura + 15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -2254,7 +2258,7 @@ const HomeScreen = () => {
                                                     onPress={() => setItemsAtr(2)}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura + 15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -2278,7 +2282,7 @@ const HomeScreen = () => {
                                                 onPress={() => setItemsAtr(3)}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura + 15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -2316,8 +2320,10 @@ const HomeScreen = () => {
                                             verticalOrientation="up"
                                             position="right"
                                             spacing={67}
+                                            size={win.width / 6}
                                             hideShadow={true}
                                             buttonColor="rgba(0, 0, 0, 0.0)"
+                                            
                                             useNativeFeedback={false}
                                             backdrop={false}
                                         >
@@ -2327,7 +2333,7 @@ const HomeScreen = () => {
                                                     onPress={() => setTopic("colores")}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura +15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
 
@@ -2351,7 +2357,7 @@ const HomeScreen = () => {
                                                     onPress={() => setTopic("numeros")}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura - 50,
+                                                        height: altura +15,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}
@@ -2374,7 +2380,7 @@ const HomeScreen = () => {
                                                     onPress={() => setTopic("animales")}
                                                     style={{
                                                         width: ancho,
-                                                        height: altura,
+                                                        height: altura +55,
                                                         alignSelf: "center",
                                                         borderRadius: 50,
                                                     }}

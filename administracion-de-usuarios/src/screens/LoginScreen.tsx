@@ -5,13 +5,9 @@ import {
     View,
     Text,
     StyleSheet,
-    KeyboardAvoidingView,
     TextInput,
     TouchableOpacity,
     Image,
-    Keyboard,
-    Platform,
-    TouchableWithoutFeedback,
     ImageBackground,
     Dimensions,
 } from "react-native";
@@ -20,12 +16,22 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { RootStackParamList } from "../../App";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Spinner from "react-native-loading-spinner-overlay/lib";
-import { useFonts, Bangers_400Regular } from '@expo-google-fonts/bangers';
+import {
+    useFonts,
+    Caveat_500Medium} from '@expo-google-fonts/caveat';
 import AppLoading from "expo-app-loading";
-
-
-
 import Modal from "react-native-modal";
+
+export type FormData={
+    email:string;
+    password:string;
+    passwordRepeat?:string;
+}
+
+export let admin = false;
+
+
+
 
 const LoginScreen = () => {
     const [email, setEmail] = React.useState("");
@@ -61,43 +67,12 @@ const LoginScreen = () => {
 
 
     let [fontsLoaded] = useFonts({
-        Bangers_400Regular
+        Caveat_500Medium
     });
 
     if (!fontsLoaded) {
         return <AppLoading />;
     }
-
-
-    // const handlerLogin = async () => {
-    //     setLoading(true);
-    //     await signInWithEmailAndPassword(auth, email, password)
-    //         .then((userCredential: { user: any }) => {
-    //             const user = userCredential.user;
-    //             console.log("Logged in with", user.email);
-    //         })
-    //         .then(() => {
-    //             navigation.replace("Home");
-    //         })
-    //         .catch((error) => {
-    //             switch (error.code) {
-    //                 case "auth/invalid-email":
-    //                 case "auth/user-not-found":
-    //                 case "auth/wrong-password":
-    //                 case "auth/internal-error":
-    //                 case "auth/too-many-requests":
-    //                     toggleModal();
-    //                     setMessage("Credenciales inválidas");
-    //                     break;
-    //                 default:
-    //                     setMessage(error.message);
-    //                     break;
-    //             }
-    //         })
-    //         .finally(() => {
-    //             setLoading(false);
-    //         });
-    // };
 
     const handlerLogin = async () => {
         setLoading(true);
@@ -134,8 +109,6 @@ const LoginScreen = () => {
     const onPressAdminHandler = () => {
         setEmail("admin@gmail.com");
         setPassword("admin123");
-        // setEmail("admin@monsters.com");
-        // setPassword("123456");
     };
 
     const onPressServiceHandler = () => {
@@ -173,14 +146,14 @@ const LoginScreen = () => {
         <View style={{
             flex: 1,
         }}>
-            <ImageBackground source={require("../assets/fondo.png")} style={{
+            <ImageBackground source={require("../assets/fondo.jpeg")} style={{
                 flex: 1,
             }}>
                 <Text style={{
 
                     color: "black",
                     fontSize: 90,
-                    fontFamily: "Bangers_400Regular",
+                    fontFamily: "Caveat_500Medium",
                     textAlign: "center",
                     marginTop: win.height * 0.1,
                 }}>
@@ -188,18 +161,29 @@ const LoginScreen = () => {
                     <Text style={{
                         color: "black",
                         fontSize: 30,
-                        fontFamily: "Bangers_400Regular",
+                        fontFamily: "Caveat_500Medium",
                     }}>
                         Por favor complete los datos para continuar {""}
 
                     </Text>
                 </Text>
 
+                <Image
+                    source={require('../../assets/lupa.png')}
+                    resizeMode="contain"
+                    style={{
+                        width: '30%',
+                        height: '5%',
+                        alignSelf: 'center',
+                    }}
+                />
+
+
                 <TextInput
                     style={{
                         marginTop: win.height * 0.1,
                         color: "#000000",
-                        backgroundColor: "#0a67ac",
+                        backgroundColor: "#5362d7",
                         paddingVertical: 10,
                         paddingHorizontal: 20,
                         borderRadius: 20,
@@ -221,7 +205,7 @@ const LoginScreen = () => {
                     style={{
                         position: "relative",
                         color: "#000000",
-                        backgroundColor: "#0a67ac",
+                        backgroundColor: "#5362d7",
                         paddingVertical: 10,
                         paddingHorizontal: 20,
                         borderRadius: 20,
@@ -304,8 +288,8 @@ const LoginScreen = () => {
 
                 <View
                     style={{
-                     
-                     
+
+
                         marginTop: win.height / 45,
 
                     }}
@@ -314,49 +298,53 @@ const LoginScreen = () => {
                     <TouchableOpacity
                         onPress={onPressAdminHandler}
                         style={{
+                            alignSelf: "center",
+                            width: win.width / 2,
                             backgroundColor: "#0a67ac",
                             justifyContent: "center",
-                             paddingHorizontal: 30,
-                             borderRadius: 10,
-                             alignItems: "center",
-                             height: 40,
-                             marginBottom: 3,
-                             borderColor: 'white',
-                             borderWidth: 1,
+                            paddingHorizontal: 30,
+                            borderRadius: 10,
+                            alignItems: "center",
+                            height: 40,
+                            marginBottom: 3,
+                            borderColor: 'white',
+                            borderWidth: 1,
                         }}
                     >
                         <Text
                             style={{
                                 color: "black",
-                                fontFamily: "Bangers_400Regular",
+                                fontFamily: "Caveat_500Medium",
                                 alignSelf: "center",
-                                fontSize: 13,
+                                fontSize: 30,
                             }}
-                        > Administrador
+                        > Admin
                         </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         onPress={onPressUserHandler}
                         style={{
+                            alignSelf: "center",
+                            width: win.width / 2,
                             backgroundColor: "#0a67ac",
                             justifyContent: "center",
                             paddingHorizontal: 40,
-                             borderRadius: 10,
-                             alignItems: "center",
-                             height: 40,
-                             marginBottom: 3,
-                             borderColor: 'white',
-                             borderWidth: 1,
+                            borderRadius: 10,
+                            alignItems: "center",
+                            height: 40,
+                            marginBottom: 3,
+                            borderColor: 'white',
+                            borderWidth: 1,
 
                         }}
                     >
                         <Text
                             style={{
                                 color: "black",
-                                fontFamily: "Bangers_400Regular",
+                                fontFamily: "Caveat_500Medium",
                                 alignSelf: "center",
-                                fontSize: 13,
+                                fontSize: 30,
                             }}
                         > Usuario
                         </Text>
@@ -365,9 +353,10 @@ const LoginScreen = () => {
                     <TouchableOpacity
                         onPress={onPressServiceHandler}
                         style={{
-                       
+                            alignSelf: "center",
+                            width: win.width / 2,
                             backgroundColor: "#0a67ac",
-                           justifyContent: "center",
+                            justifyContent: "center",
                             paddingHorizontal: 20,
                             borderRadius: 10,
                             alignItems: "center",
@@ -380,16 +369,19 @@ const LoginScreen = () => {
                         <Text
                             style={{
                                 color: "black",
-                                fontFamily: "Bangers_400Regular",
+                                fontFamily: "Caveat_500Medium",
                                 alignSelf: "center",
-                                fontSize: 13,
+                                fontSize: 30,
                             }}
                         > Service
                         </Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> 
+
+                    </View>
 
 
-                </View>
+
+             
             </ImageBackground>
         </View>
 
@@ -400,10 +392,10 @@ const LoginScreen = () => {
     );
 };
 export default LoginScreen;
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#fe876f',
     },
     image: {
 
@@ -423,7 +415,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 10,
         marginBottom: 10,
-        fontFamily: 'Bangers_400Regular',
+        fontFamily: 'Caveat_500Medium',
     },
     fabLocation: {
         flex: 1,
@@ -437,7 +429,7 @@ const styles = StyleSheet.create({
         left: 20,
         borderRadius: 50,
 
-        backgroundColor: "#ffffff",
+        backgroundColor: "#438fe7",
         alignContent: "center",
         alignItems: "center",
         justifyContent: "center",
@@ -454,7 +446,7 @@ const styles = StyleSheet.create({
     header: {
         borderRadius: 20,
         color: "#000000",
-        fontFamily: 'Bangers_400Regular',
+        fontFamily: 'Caveat_500Medium',
         fontSize: 50,
         textAlign: "center",
     },
@@ -540,3 +532,4 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
 });
+
